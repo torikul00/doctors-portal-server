@@ -66,6 +66,13 @@ async function run() {
 
             res.send(services);
         })
+        // get all booking for specific ser
+        app.get('/booking', async (req, res) => {
+            const patientEmail = req.query.patientEmail
+            const query = { userEmail: patientEmail }
+            const booking = await bookingCollection.find(query).toArray()
+            res.send(booking)
+        })
     }
 
     finally {
